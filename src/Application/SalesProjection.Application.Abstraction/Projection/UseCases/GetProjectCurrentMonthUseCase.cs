@@ -9,7 +9,7 @@ namespace SalesProjection.Application.Projection.UseCases
 {
     public interface IGetProjectCurrentMonthUseCase
     {
-        Task<ProjectionResponse> GetProjectionAsync();
+        Task<List<ProjectionResponse>?> GetProjectionAsync();
 
     }
 }

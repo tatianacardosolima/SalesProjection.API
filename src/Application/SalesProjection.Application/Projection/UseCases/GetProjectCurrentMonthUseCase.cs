@@ -16,17 +16,17 @@ namespace SalesProjection.Application.Projection.UseCases
             _repository = repository;
             _factory = factory;
         }
-        public async Task<ProjectionResponse> GetProjectionAsync()
+        public async Task<List<ProjectionResponse>?> GetProjectionAsync()
         {
             var lastMonthDate = DateTime.UtcNow.AddMonths(-1);
             var branchs = await _repository.GetBranchToProjectionByYearAndMonthAsync(lastMonthDate.Year, lastMonthDate.Month);
-
+            var list = new List<ProjectionResponse>();
             foreach (var branch in branchs)
             {
                 var strategy  = _factory.CreateStrategy(branch);
-                var response = await strategy.GetProjectionAsync(branch, DateTime.UtcNow);
+                list.Add(await strategy.GetProjectionAsync(branch, DateTime.UtcNow));
             }
-            throw new NotImplementedException();
+            return list;
         }
     }
 }

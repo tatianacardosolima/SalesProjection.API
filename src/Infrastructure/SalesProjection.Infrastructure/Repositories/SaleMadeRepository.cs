@@ -17,11 +17,11 @@ namespace SalesProjection.Infrastructure.Database.Repositories
         {
             var period = $"{year}-{month}";
             var response = await _client.SearchAsync<ProcessLot>(s => s
-                            .Index(_indexName) // Substitua pelo nome do índice
+                            .Index(_indexName)
                             .Query(q => q
                                 .Bool(b => b
                                     .Filter(f => f
-                                        .Term(t => t.Field(f => f.Period).Value(period)) // Filtro pelo campo "Period"
+                                        .Match(t => t.Field(f => f.Period).Query(period)) // Filtro pelo campo "Period"
                                     )
                                 )
                             )
@@ -45,12 +45,12 @@ namespace SalesProjection.Infrastructure.Database.Repositories
         {
             
             var response =  await _client.SearchAsync<ProcessLot>(s => s
-                    .Index("index-name") // Substitua pelo nome do seu índice
+                    .Index(_indexName) // Substitua pelo nome do seu índice
                     .Query(q => q
                         .Bool(b => b
                             .Filter(
-                                f => f.Term(t => t.Field(p => p.Period).Value(period)),  
-                                f => f.Term(t => t.Field(p => p.BranchName).Value(branch))
+                                f => f.Match(t => t.Field(p => p.Period).Query(period)),  
+                                f => f.Match(t => t.Field(p => p.BranchName).Query(branch))
                             )
                         )
                     )

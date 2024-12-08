@@ -8,7 +8,7 @@
             Branch = branch;
             Region = region;
             Period = period;
-            SalesProjectionValue = salesProjectionValue;
+            SalesProjectionValue = Math.Round(salesProjectionValue,2);
             Strategy = strategy;
         }
         public string Branch { get; set; }

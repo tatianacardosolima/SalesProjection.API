@@ -1,8 +1,10 @@
 using Nest;
 using SalesProjection.Application.Abstraction.Made.IRepositories;
 using SalesProjection.Application.Abstraction.Made.IUseCases;
+using SalesProjection.Application.Abstraction.Projection.Strategies;
 using SalesProjection.Application.Made.UseCases;
 using SalesProjection.Application.Projection.Factories;
+using SalesProjection.Application.Projection.Strategies;
 using SalesProjection.Application.Projection.UseCases;
 using SalesProjection.Domain.Entities;
 using SalesProjection.Infrastructure.Database.Repositories;
@@ -54,6 +56,9 @@ builder.Services.AddTransient<IProjectionFactory, ProjectionFactory>();
 builder.Services.AddTransient<IGetProjectCurrentMonthUseCase, GetProjectCurrentMonthUseCase>();
 builder.Services.AddTransient<ICleanLoadSalesUseCase, CleanLoadSalesUseCase>();
 builder.Services.AddTransient<IGetSaleMadeUseCase, GetSaleMadeUseCase>();
+builder.Services.AddTransient<DailyAveragesPreviouMonthStrategy>();
+builder.Services.AddTransient<DailyAveragesSalesFromLastSevenDaysStrategy>();
+
 
 
 var app = builder.Build();

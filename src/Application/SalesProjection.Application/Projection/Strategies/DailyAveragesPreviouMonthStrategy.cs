@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SalesProjection.Application.Projection.Strategies
 {
-    internal class DailyAveragesPreviouMonthStrategy : IProjectionStrategy
+    public class DailyAveragesPreviouMonthStrategy : IProjectionStrategy
     {
         private IProcessLotRepository _repository;
 
@@ -30,7 +30,10 @@ namespace SalesProjection.Application.Projection.Strategies
                 DailyAverage = group.Average(sale => sale.Sale)
             })
             .ToList();
-            var response = new ProjectionResponse(lotProjection.Branch, DateTime.UtcNow.ToString("yyyy-MM"), lotProjection.Period, dailyAverages.Sum(x => x.DailyAverage), "DailyAveragesPreviouMonthStrategy");
+            var response = new ProjectionResponse(lotProjection.Branch,lotProjection.Region, 
+                                    DateTime.UtcNow.ToString("yyyy-MM"), 
+                                    dailyAverages.Sum(x => x.DailyAverage), 
+                                    "DailyAveragesPreviouMonthStrategy");
             
             return response;
         }

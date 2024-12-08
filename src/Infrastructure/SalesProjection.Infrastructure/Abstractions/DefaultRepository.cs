@@ -38,12 +38,11 @@ namespace SalesProjection.Infrastructure.Database.Abstractions
        
 
         public async Task InsertAsync(T entity)
-        {
-            //var response = await _client.IndexDocumentAsync(entity);            
+        {            
             var response = await _client.IndexAsync(entity, i => i
-                .Index(_indexName) // Nome do índice
-                .Id(entity.Id) // (Opcional) Especificar o ID do documento
-                .Refresh(Refresh.WaitFor) // Atualiza o índice antes de responder
+                .Index(_indexName) 
+                .Id(entity.Id) 
+                .Refresh(Refresh.WaitFor) 
             );
 
             if (!response.IsValid)
