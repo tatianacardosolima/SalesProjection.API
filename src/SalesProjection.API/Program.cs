@@ -53,6 +53,7 @@ builder.Services.AddTransient<ILoadSalesMadeUseCase, LoadSalesMadeUseCase>();
 builder.Services.AddTransient<IProjectionFactory, ProjectionFactory>();
 builder.Services.AddTransient<IGetProjectCurrentMonthUseCase, GetProjectCurrentMonthUseCase>();
 builder.Services.AddTransient<ICleanLoadSalesUseCase, CleanLoadSalesUseCase>();
+builder.Services.AddTransient<IGetSaleMadeUseCase, GetSaleMadeUseCase>();
 
 
 var app = builder.Build();

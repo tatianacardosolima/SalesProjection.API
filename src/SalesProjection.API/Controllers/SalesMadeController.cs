@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SalesProjection.Application.Abstraction.Made.IUseCases;
 using SalesProjection.Application.Abstraction.Made.Request;
+using SalesProjection.Application.Made.UseCases;
 
 namespace SalesProjection.API.Controllers
 {
@@ -10,11 +11,15 @@ namespace SalesProjection.API.Controllers
     {
         private readonly ILoadSalesMadeUseCase _loadSalesMadeUseCase;
         private readonly ICleanLoadSalesUseCase _cleanLoadSalesUseCase;
+        private readonly IGetSaleMadeUseCase _getSaleMadeUseCase;
 
-        public SalesMadeController(ILoadSalesMadeUseCase loadSalesMadeUseCase, ICleanLoadSalesUseCase cleanLoadSalesUseCase)
+        public SalesMadeController(ILoadSalesMadeUseCase loadSalesMadeUseCase, 
+            ICleanLoadSalesUseCase cleanLoadSalesUseCase,
+            IGetSaleMadeUseCase getSaleMadeUseCase)
         {
             _loadSalesMadeUseCase = loadSalesMadeUseCase;
             _cleanLoadSalesUseCase = cleanLoadSalesUseCase;
+            _getSaleMadeUseCase = getSaleMadeUseCase;
         }
         [HttpPost("upload-csv")]
         public async Task<IActionResult> UploadCsv([FromForm] IFormFile file)
@@ -43,6 +48,12 @@ namespace SalesProjection.API.Controllers
         {
             await _cleanLoadSalesUseCase.ExecuteAsync();
             return Ok();
+        }
+
+        [HttpGet()]
+        public async Task<IActionResult> GetLoad()
+        {            
+            return Ok(await _getSaleMadeUseCase.ExecuteAsync());
         }
     }
 }
