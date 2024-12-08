@@ -12,7 +12,7 @@ namespace SalesProjection.Domain.Entities
 
     public class ProcessLot: EntityBase
     {
-        public ProcessLot(List<SaleMadeItem> saleMadeItem, string region, string branchName)
+        public ProcessLot(List<SaleMadeItem> saleMadeItem, string region, string branchName, string period)
         {
             Id = Guid.NewGuid();
             CreatedAt = DateTime.UtcNow;
@@ -20,12 +20,14 @@ namespace SalesProjection.Domain.Entities
             SaleMadeItem = saleMadeItem;
             Region = region;
             BranchName = branchName;
+            Period = period;
         }        
         public DateTime CreatedAt { get; set; }
         public int Status { get; set; }
         public List<SaleMadeItem> SaleMadeItem { get; set; }
         public string Region { get; set; }
         public string BranchName { get; set; }
+        public string  Period { get; set; }
 
     }
 

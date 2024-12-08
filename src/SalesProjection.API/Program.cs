@@ -2,6 +2,8 @@ using Nest;
 using SalesProjection.Application.Abstraction.Made.IRepositories;
 using SalesProjection.Application.Abstraction.Made.IUseCases;
 using SalesProjection.Application.Made.UseCases;
+using SalesProjection.Application.Projection.Factories;
+using SalesProjection.Application.Projection.UseCases;
 using SalesProjection.Domain.Entities;
 using SalesProjection.Infrastructure.Database.Repositories;
 
@@ -48,6 +50,8 @@ builder.Services.AddSingleton(elasticClient);
 
 builder.Services.AddTransient<IProcessLotRepository, ProcessLotRepository>();
 builder.Services.AddTransient<ILoadSalesMadeUseCase, LoadSalesMadeUseCase>();
+builder.Services.AddTransient<IProjectionFactory, ProjectionFactory>();
+builder.Services.AddTransient<IGetProjectCurrentMonthUseCase, GetProjectCurrentMonthUseCase>();
 
 
 var app = builder.Build();

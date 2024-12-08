@@ -6,8 +6,8 @@ namespace SalesProjection.Infrastructure.Database.Abstractions
 {
     public class DefaultRepository<T> : IDefaultRepository<T> where T : EntityBase
     {
-        private readonly ElasticClient _client;
-        private readonly string _indexName;
+        public readonly ElasticClient _client;
+        public readonly string _indexName;
 
         public DefaultRepository(ElasticClient client, string indexName)
         {

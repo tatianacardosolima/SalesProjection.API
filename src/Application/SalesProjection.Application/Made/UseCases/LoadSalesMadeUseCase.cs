@@ -37,7 +37,8 @@ namespace SalesProjection.Application.Made.UseCases
             var list = await ReadCsvFileAsync(filePath);
             var branchName = request.FileName.Split("_")[0];
             var region = request.FileName.Split("_")[1];
-            var entity = new ProcessLot(list!, region, branchName);
+            var period = request.FileName.Split("_")[2];
+            var entity = new ProcessLot(list!, region, branchName, period);
 
             await _repository.InsertAsync(entity);
             File.Delete(filePath);

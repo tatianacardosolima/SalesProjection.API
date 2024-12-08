@@ -4,6 +4,8 @@ using SalesProjection.Application.Abstraction.Made.Request;
 
 namespace SalesProjection.API.Controllers
 {
+    [ApiController]
+    [Route("sales-made")]
     public class SalesMadeController : ControllerBase
     {
         private readonly ILoadSalesMadeUseCase _loadSalesMadeUseCase;

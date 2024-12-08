@@ -2,7 +2,7 @@
 string branch = "filia01";
 DateTime start_month = new DateTime(2024, 11, 01);
 DateTime end_month = new DateTime(2024, 11, 30);
-string filePath = $@"C:\_code\SalesProjection.API\src\Console\Create.Load.CSV\csv\{branch}_sul_{end_month:dd-MM-yyyy}.csv";
+string filePath = $@"C:\_code\SalesProjection.API\src\Console\Create.Load.CSV\csv\{branch}_sul_{end_month:MM-yyyy}.csv";
 
 // Conteúdo a ser escrito no arquivo
 List<string> linhas = new List<string>();
