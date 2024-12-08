@@ -16,7 +16,7 @@ namespace SalesProjection.Application.Projection.UseCases
             _repository = repository;
             _factory = factory;
         }
-        public async Task<List<ProjectionResponse>?> GetProjectionAsync()
+        public async Task<List<ProjectionResponse>> GetProjectionAsync()
         {
             var lastMonthDate = DateTime.UtcNow.AddMonths(-1);
             var branchs = await _repository.GetBranchToProjectionByYearAndMonthAsync(lastMonthDate.Year, lastMonthDate.Month);
@@ -24,7 +24,7 @@ namespace SalesProjection.Application.Projection.UseCases
             foreach (var branch in branchs)
             {
                 var strategy  = _factory.CreateStrategy(branch);
-                list.Add(await strategy.GetProjectionAsync(branch, DateTime.UtcNow));
+                list.Add( await strategy.GetProjectionAsync(branch, DateTime.UtcNow));
             }
             return list;
         }

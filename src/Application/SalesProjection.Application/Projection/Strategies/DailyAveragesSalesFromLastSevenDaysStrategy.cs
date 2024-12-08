@@ -45,7 +45,7 @@ namespace SalesProjection.Application.Projection.Strategies
             })
             .ToList();
             
-            return new ProjectionResponse(lotProjection.Branch, lotProjection.Period, lotProjection.Period, dailyAverages.Sum(x => x.DailyAverage), "DailyAveragesSalesFromLastSevenDaysStrategy"); ;
+            return new ProjectionResponse(lotProjection.Branch, lotProjection.Region, current.ToString("yyyy-MM"), dailyAverages.Sum(x => x.DailyAverage), "DailyAveragesSalesFromLastSevenDaysStrategy"); ;
         }
     }
 }
