@@ -1,8 +1,8 @@
 ﻿// Caminho do arquivo a ser criado
-string branch = "filia01";
+string branch = "FilialD";
 DateTime start_month = new DateTime(2024, 11, 01);
 DateTime end_month = new DateTime(2024, 11, 30);
-string filePath = $@"C:\_code\SalesProjection.API\src\Console\Create.Load.CSV\csv\{branch}_sul_{end_month:MM-yyyy}.csv";
+string filePath = $@"C:\_code\SalesProjection.API\src\Console\Create.Load.CSV\csv\{branch}_oeste_{end_month:yyyy-MM}.csv";
 
 // Conteúdo a ser escrito no arquivo
 List<string> linhas = new List<string>();

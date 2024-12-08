@@ -52,6 +52,7 @@ builder.Services.AddTransient<IProcessLotRepository, ProcessLotRepository>();
 builder.Services.AddTransient<ILoadSalesMadeUseCase, LoadSalesMadeUseCase>();
 builder.Services.AddTransient<IProjectionFactory, ProjectionFactory>();
 builder.Services.AddTransient<IGetProjectCurrentMonthUseCase, GetProjectCurrentMonthUseCase>();
+builder.Services.AddTransient<ICleanLoadSalesUseCase, CleanLoadSalesUseCase>();
 
 
 var app = builder.Build();

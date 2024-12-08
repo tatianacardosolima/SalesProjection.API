@@ -9,10 +9,12 @@ namespace SalesProjection.API.Controllers
     public class SalesMadeController : ControllerBase
     {
         private readonly ILoadSalesMadeUseCase _loadSalesMadeUseCase;
+        private readonly ICleanLoadSalesUseCase _cleanLoadSalesUseCase;
 
-        public SalesMadeController(ILoadSalesMadeUseCase loadSalesMadeUseCase)
+        public SalesMadeController(ILoadSalesMadeUseCase loadSalesMadeUseCase, ICleanLoadSalesUseCase cleanLoadSalesUseCase)
         {
             _loadSalesMadeUseCase = loadSalesMadeUseCase;
+            _cleanLoadSalesUseCase = cleanLoadSalesUseCase;
         }
         [HttpPost("upload-csv")]
         public async Task<IActionResult> UploadCsv([FromForm] IFormFile file)
@@ -34,6 +36,13 @@ namespace SalesProjection.API.Controllers
             };
 
             return Ok(await _loadSalesMadeUseCase.ExecuteAsync(uploadRequest));
+        }
+
+        [HttpPost("clean-load")]
+        public async Task<IActionResult> CleanLoad()
+        {
+            await _cleanLoadSalesUseCase.ExecuteAsync();
+            return Ok();
         }
     }
 }

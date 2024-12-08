@@ -23,7 +23,7 @@ namespace SalesProjection.Infrastructure.Database.Abstractions
             return response.Source;
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>?> GetAllAsync()
         {
             var response = await _client.SearchAsync<T>(s => s
                 .Index(_indexName)
@@ -55,7 +55,7 @@ namespace SalesProjection.Infrastructure.Database.Abstractions
                 throw new Exception($"Erro ao atualizar documento: {response.OriginalException?.Message}");
         }
 
-        public async Task DeleteAsync(string id)
+        public async Task DeleteAsync(Guid id)
         {
             var response = await _client.DeleteAsync<T>(id, d => d.Index(_indexName));
             if (!response.IsValid)

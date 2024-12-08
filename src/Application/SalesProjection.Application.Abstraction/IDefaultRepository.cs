@@ -7,8 +7,8 @@ namespace SalesProjection.Application.Abstraction
     {
         Task InsertAsync(T entity);
         Task<T>? GetByIdAsync(string id);
-        Task<IEnumerable<T>>? GetAllAsync();        
+        Task<IEnumerable<T>?> GetAllAsync();        
         Task UpdateAsync(T entity, string id);
-        Task DeleteAsync(string id);
+        Task DeleteAsync(Guid id);
     }
 }
