@@ -41,11 +41,14 @@ namespace SalesProjection.Application.Projection.Strategies
             .Select(group => new
             {
                 Period = group.Key,
-                DailyAverage = group.Average(sale => sale.Sale)
+                DailyAverage = group.Average(sale => sale.Sale),
+                DailyCount = group.Count()
             })
             .ToList();
             
-            return new ProjectionResponse(lotProjection.Branch, lotProjection.Region, current.ToString("yyyy-MM"), dailyAverages.Sum(x => x.DailyAverage), "DailyAveragesSalesFromLastSevenDaysStrategy"); ;
+            return new ProjectionResponse(lotProjection.Branch, lotProjection.Region, 
+                    current.ToString("yyyy-MM"), 
+                    dailyAverages.Sum(x => x.DailyAverage * x.DailyCount), "DailyAveragesSalesFromLastSevenDaysStrategy"); ;
         }
     }
 }

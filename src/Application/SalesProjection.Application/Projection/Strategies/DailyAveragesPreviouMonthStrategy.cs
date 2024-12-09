@@ -27,12 +27,13 @@ namespace SalesProjection.Application.Projection.Strategies
             .Select(group => new
             {
                 Period = group.Key,
-                DailyAverage = group.Average(sale => sale.Sale)
+                DailyAverage = group.Average(sale => sale.Sale),
+                DailyCount = group.Count()
             })
             .ToList();
             var response = new ProjectionResponse(lotProjection.Branch,lotProjection.Region, 
                                     DateTime.UtcNow.ToString("yyyy-MM"), 
-                                    dailyAverages.Sum(x => x.DailyAverage), 
+                                    dailyAverages.Sum(x => x.DailyAverage * x.DailyCount), 
                                     "DailyAveragesPreviouMonthStrategy");
             
             return response;
